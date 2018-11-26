@@ -1,0 +1,22 @@
+<h3>Cart</h3>
+<div>Items in Basket: {{ data.order.items.length }}</div>
+<div>Subtotal: {{ data.order.subtotal | currency:'GBP' }}</div>
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <td>Beer</td>
+      <td>Quantity</td>
+      <td>Price</td>
+      <td>Total</td>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor = "let o of data.order.items">
+        <td>{{ o.beerBeerName }}</td>
+        <td>{{ o.quantity }}</td>
+        <td>{{ o.unitPrice | currency:'GBP' }}</td>
+        <td>{{ (o.unitPrice * o.quantity) | currency:'GBP'}}</td>
+      </tr>
+  </tbody>
+</table>
+<button class="btn btn-success float-right" *ngIf = "data.order.items.length > 0" (click) = "onCheckout()">Checkout</button>
