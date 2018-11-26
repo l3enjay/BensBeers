@@ -31,6 +31,7 @@ namespace BensBeers.Controllers
         {
             try
             {
+                Request.HttpContext.Response.Headers.Append("Access-Control-Allow-Origin", "*");
                 return Ok(_repository.GetAllProducts());
             }
             catch (Exception ex)

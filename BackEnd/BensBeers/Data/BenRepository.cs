@@ -46,11 +46,13 @@ namespace BensBeers.Data
                 .Where( o => o.User.UserName == username)
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Beer)
+                .ThenInclude(b => b.Brewery)
                 .ToList();
             }
             else
             {
                 return _ctx.Orders
+                .Where(o => o.User.UserName == username)
                 .ToList();
             }
         }
