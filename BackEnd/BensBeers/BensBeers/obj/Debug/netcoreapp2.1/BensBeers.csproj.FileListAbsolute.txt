@@ -1,0 +1,17 @@
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.deps.json
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.runtimeconfig.json
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.runtimeconfig.dev.json
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.dll
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.pdb
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.csprojAssemblyReference.cache
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.csproj.CoreCompileInputs.cache
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.RazorAssemblyInfo.cache
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.RazorAssemblyInfo.cs
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.AssemblyInfoInputs.cache
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.AssemblyInfo.cs
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.RazorTargetAssemblyInfo.cache
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.dll
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.pdb
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.Data.dll
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\bin\Debug\netcoreapp2.1\BensBeers.Data.pdb
+D:\Projects\Deloitte\BackEnd\BensBeers\BensBeers\obj\Debug\netcoreapp2.1\BensBeers.csproj.CopyComplete
