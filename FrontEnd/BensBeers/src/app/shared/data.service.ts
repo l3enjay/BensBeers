@@ -89,9 +89,9 @@ export class DataService {
       .pipe(
         map(response => {
           this.order = new Order();
+          this.orderDisplay = new Order();
           return true;
-        },
-          tap(m => console.log('Model is:', this.order.orderID))
+        }
       ));
   }
 }
