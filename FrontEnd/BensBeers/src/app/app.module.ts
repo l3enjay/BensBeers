@@ -11,6 +11,7 @@ import {CartComponent} from './shop/cart/cart.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {FormsModule} from '@angular/forms';
     CartComponent,
     CheckoutComponent,
     LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

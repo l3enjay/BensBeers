@@ -4,6 +4,7 @@ import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {BaseBeer} from './products';
 import {Order, OrderItem} from './order';
+import { Registration } from './registration';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class DataService {
 
   public order: Order = new Order();
   public orderDisplay : Order = new Order();
+  public newUser: Registration = new Registration();
 
   public products: BaseBeer[] = [];
 
@@ -93,5 +95,17 @@ export class DataService {
           return true;
         }
       ));
+  }
+
+  public register(newUser: Registration)
+  {
+    const body: Registration = {
+      firstName: newUser.firstName,
+      password: newUser.password,
+      email: newUser.email,
+      lastName: newUser.lastName,
+      username: newUser.email
+    };
+    return this.http.post('http://localhost:8888/api/Account/Register', body);
   }
 }

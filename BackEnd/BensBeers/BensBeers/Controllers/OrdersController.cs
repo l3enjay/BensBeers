@@ -90,7 +90,7 @@ namespace BensBeers.Controllers
                     _repository.AddOrder(newOrder);
 
                     if (_repository.SaveAll())
-                    {
+                    { 
                         return Created($"/api/orders/{newOrder.Id})", _mapper.Map<Order, OrderViewModel>(newOrder));
                     }
                 }

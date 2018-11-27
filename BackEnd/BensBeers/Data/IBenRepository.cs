@@ -12,9 +12,11 @@ namespace BensBeers.Data
         Order GetOrderById(string username, int id);
         IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems);
         void AddOrder(Order newOrder);
+        void RegisterNewUser(BensBeersUser newUser);
+
 
         bool SaveAll();
         void AddEntity(object model);
-
+        
     }
 }

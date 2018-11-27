@@ -19,6 +19,10 @@ namespace BensBeers.ViewModels
                 .ForMember(o => o.BeerId, ex => ex.MapFrom(o => o.Beer.Id))
                 .ReverseMap();
 
+            CreateMap<BensBeersUser, RegistrationViewModel>()
+                .ForMember(m => m.Password, opt => opt.Ignore())
+                .ReverseMap();
+
         }
     }
 }

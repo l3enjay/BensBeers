@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <form (ngSubmit)="onRegister(registrationForm)" #registrationForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="email">email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          [(ngModel)]="details.email"
+          #email="ngModel"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="details.password"
+          #password="ngModel"
+          required
+        />
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            [(ngModel)]="details.firstname"
+            #firstname="ngModel"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="lastname">LastName</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            [(ngModel)]="details.lastname"
+            #lastname="ngModel"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-success" value="onRegister" />
+        <a href="#" class="btn btn-default">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using BensBeers.Data;
 using BensBeers.Data.Entities;
 using BensBeers.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -24,16 +26,61 @@ namespace BensBeers.Controllers
         private readonly SignInManager<BensBeersUser> _signinmanager;
         private readonly UserManager<BensBeersUser> _usermanager;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
+        private readonly IBenRepository _repository;
 
         public AccountController(ILogger<AccountController> logger,
             SignInManager<BensBeersUser> signInManager,
             UserManager<BensBeersUser> userManager,
-            IConfiguration config)
+            IConfiguration config,
+            IMapper mapper,
+            IBenRepository repository)
         {
             _logger = logger;
             _signinmanager = signInManager;
             _usermanager = userManager;
             _config = config;
+            _mapper = mapper;
+            _repository = repository;
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody]RegistrationViewModel model )
+        {
+            {
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var newUser = _mapper.Map<RegistrationViewModel, BensBeersUser>(model);
+
+
+                        var result = await _usermanager.CreateAsync(newUser, model.Password);
+
+                        if (result != IdentityResult.Success)
+                        {
+                            throw new InvalidOperationException("Could not register");
+                        }
+
+                        else
+                        {                            
+                            return Created($"/api/Accounts/{newUser.Id})", _mapper.Map<BensBeersUser, RegistrationViewModel>(newUser));                            
+                        }
+                    }
+                    else
+                    {
+                        return BadRequest(ModelState);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Failed to Register: {ex}");
+
+                }
+
+                return BadRequest("Failed to Register");
+            }
         }
 
         [HttpPost]

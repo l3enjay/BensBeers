@@ -92,6 +92,11 @@ namespace BensBeers.Data
                 .ToList();
         }
 
+        public void RegisterNewUser(BensBeersUser newUser)
+        {
+            _ctx.Add(newUser);
+        }
+
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0;
