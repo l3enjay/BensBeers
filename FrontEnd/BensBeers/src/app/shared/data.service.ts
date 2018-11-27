@@ -12,6 +12,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   public order: Order = new Order();
+  public orderDisplay : Order = new Order();
 
   public products: BaseBeer[] = [];
 
@@ -42,21 +43,37 @@ export class DataService {
   }
 
   public addToOrder(newProduct: BaseBeer) {
-    let item: OrderItem = this.order.items.find(o => o.id === newProduct.id);
+    let item: OrderItem = this.order.items.find(o => o.beerId === newProduct.id);
     if (item) {
       item.quantity++;
     } else {
       item = new OrderItem();
-      item.id = newProduct.id;
+      item.beerId = newProduct.id
       item.beerBeerName = newProduct.beerName;
-      item.beerAbv = newProduct.abv;
-      item.beerBrewery = newProduct.brewery;
+      item.beerAbv = newProduct.abv;  
       item.beerSize = newProduct.size;
       item.beerStyle = newProduct.style;
       item.unitPrice = newProduct.price;
       item.quantity = 1;
 
       this.order.items.push(item);
+    }
+
+    let itemDisplay: OrderItem = this.orderDisplay.items.find(o => o.beerId === newProduct.id);
+    if (itemDisplay) {
+      itemDisplay.quantity++;
+    } else {
+      itemDisplay = new OrderItem();
+      itemDisplay.beerId = newProduct.id
+      itemDisplay.beerBeerName = newProduct.beerName;
+      itemDisplay.beerAbv = newProduct.abv;  
+      itemDisplay.beerSize = newProduct.size;
+      itemDisplay.beerStyle = newProduct.style;
+      itemDisplay.unitPrice = newProduct.price;
+      itemDisplay.beerBrewery = newProduct.brewery;
+      itemDisplay.quantity = 1;
+
+      this.orderDisplay.items.push(itemDisplay);
     }
   }
   public checkout() {

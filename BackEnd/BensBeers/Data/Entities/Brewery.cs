@@ -11,6 +11,5 @@ namespace BensBeers.Data.Entities
         public string Location { get; set; }
         public string Description { get; set; }
         public string ImageLink { get; set; }
-        public ICollection<Product> Beers { get; set; }
     }
 }
