@@ -23,4 +23,8 @@ export class Order {
   get subtotal(): number {
     return _.sum(_.map(this.items, i => i.unitPrice * i.quantity));
   }
+
+  get totalitems() {
+    return _.sum(_.map(this.items, i => i.quantity));
+  }
 }

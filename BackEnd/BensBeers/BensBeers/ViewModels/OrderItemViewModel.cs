@@ -14,7 +14,7 @@ namespace BensBeers.ViewModels
         [Required]
         public int BeerId { get; set; }
 
-        public string BeerName { get; set; }
+        public string BeerBeerName { get; set; }
         public int BeerSize { get; set; }
         public int BeerAbv { get; set; }
         public string BeerImageLink { get; set; }

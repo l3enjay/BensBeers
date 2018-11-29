@@ -13,7 +13,7 @@ namespace BensBeers.Data
         IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems);
         void AddOrder(Order newOrder);
         void RegisterNewUser(BensBeersUser newUser);
-
+        Order GetOrderByOrderNumber(string username, string ordernumber);
 
         bool SaveAll();
         void AddEntity(object model);

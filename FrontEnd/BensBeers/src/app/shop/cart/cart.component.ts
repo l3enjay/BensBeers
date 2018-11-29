@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
 
   onCheckout() {
     if (this.data.loginRequired) {
+      this.data.orderSelected = '';
       this.router.navigate(['/login']);
     } else {
       this.router.navigate(['shop/checkout']);

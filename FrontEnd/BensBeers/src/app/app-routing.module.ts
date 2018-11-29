@@ -4,12 +4,16 @@ import {ShopComponent} from './shop/shop.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {LoginComponent} from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AccountComponent } from './account/account.component';
+import { OrderDetailsComponent } from './account/order-details/order-details.component';
 
 const routes: Routes = [
   {path: 'shop', component: ShopComponent},
   {path: 'shop/checkout', component: CheckoutComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegistrationComponent}
+  {path: 'register', component: RegistrationComponent},
+  {path : 'account', component: AccountComponent},
+  {path: 'order', component: OrderDetailsComponent}
 ];
 
 @NgModule({
