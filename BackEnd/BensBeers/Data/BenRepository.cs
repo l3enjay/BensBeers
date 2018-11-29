@@ -85,6 +85,16 @@ namespace BensBeers.Data
                 .FirstOrDefault();
         }
 
+        public Order GetOrderByOrderNumber(string username, string ordernumber)
+        {
+            return _ctx.Orders
+                .Include(o => o.Items)
+                .ThenInclude(i => i.Beer)
+                .ThenInclude(b => b.Brewery)
+                .Where(o => o.OrderNumber == ordernumber && o.User.UserName == username)
+                .FirstOrDefault();
+        }
+
         public IEnumerable<Product> GetProductsByStyle(string style)
         {
             return _ctx.Products

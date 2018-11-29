@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit {
     this.data.login(this.creds).subscribe(
       success => {
         if (success) {
-          if (this.data.order.items.length === 0) {
-            this.router.navigate(['shop']);
-          } else {
+          if (this.data.orderSelected === '') {
             this.router.navigate(['shop/checkout']);
+          } else {
+            this.router.navigate(['account']);
           }
         }
       },

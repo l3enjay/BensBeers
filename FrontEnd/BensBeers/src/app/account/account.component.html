@@ -1,0 +1,33 @@
+<div class="col-md-4 col-md-offset-8">
+  <table class="table table-bordered table-hover">
+    <tbody >
+      <div *ngFor="let o of orders" class= "col-md-8">
+        <tr>
+          <td>{{ o.orderNumber }} </td>
+          <td>{{ o.orderDate | date }}</td>
+          <td>{{ data.calculatesubtotalinarray(o) | currency:'GBP' }}</td>
+        <!--<td id="itemDetails{{o.orderID}}" [ngbCollapse]="isCollapsed">
+          <td>
+            
+              <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" attr.aria-controls="'itemDetails' + {{o.orderID}">
+                Toggle
+              </button>
+            </td>
+          <table class="table table-bordered table-hover">
+            <tr *ngFor="let i of o.items">
+          <td>{{i.beerBeerName}}</td>
+          <td>{{i.beerBrewery.name}}</td>
+          <td>{{i.beerAbv}}</td>
+          <td>{{i.quantity}}</td>
+          <td>{{i.unitPrice}}</td>
+          <td>{{i.unitPrice * i.quantity}}</td> 
+          </tr>  
+          </table>   
+        </td>-->
+        <td><button (click)="orderDetails(o.orderID)">More Details</button></td>
+        </tr>
+      </div>
+    </tbody>
+  </table>
+</div>

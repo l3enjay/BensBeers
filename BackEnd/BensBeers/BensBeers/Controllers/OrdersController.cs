@@ -70,6 +70,23 @@ namespace BensBeers.Controllers
             }
         }
 
+        [HttpGet("{ordernumber}")]
+        public IActionResult Get(string ordernumber)
+        {
+            try
+            {
+                var order = _repository.GetOrderByOrderNumber(User.Identity.Name, ordernumber);
+
+                if (order != null) return Ok(_mapper.Map<Order, OrderViewModel>(order));
+                else return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get orders: {ex}");
+                return BadRequest("Failed to get Orders");
+            }
+        }
+
         [HttpPost]
         public async  Task<IActionResult> Post([FromBody]OrderViewModel model)
         {
