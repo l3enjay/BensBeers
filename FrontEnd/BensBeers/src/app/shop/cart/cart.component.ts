@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from 'src/app/shared/data.service';
 import {Router} from '@angular/router';
+import { OrderItem } from 'src/app/shared/order';
+import { BaseBeer } from 'src/app/shared/products';
 
 @Component({
   selector: 'app-cart',
@@ -20,4 +22,6 @@ export class CartComponent implements OnInit {
       this.router.navigate(['shop/checkout']);
     }
   }
+
+
 }

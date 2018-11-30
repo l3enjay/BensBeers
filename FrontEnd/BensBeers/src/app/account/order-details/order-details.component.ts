@@ -8,6 +8,7 @@ import { Order } from 'src/app/shared/order';
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
+  title = 'Order Summary';
 
   order: Order = new Order();
 

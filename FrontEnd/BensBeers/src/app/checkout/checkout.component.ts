@@ -27,7 +27,6 @@ export class CheckoutComponent implements OnInit {
           },
           err => (this.errorMessage = this.data.newordernumber)
           );
-        
         }
       },
       err => (this.errorMessage = 'Failed to save order')

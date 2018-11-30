@@ -12,12 +12,12 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private data: DataService) { }
 
+  details: Registration = new Registration();
+
   ngOnInit() {
   }
 
-  details: Registration = new Registration();
-
-  onRegister(form: NgForm){
+  onRegister(form: NgForm) {
     this.data.register(form.value).subscribe();
   }
 
