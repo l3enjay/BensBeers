@@ -13,16 +13,15 @@
   <tbody>
     <tr *ngFor="let o of data.order.items">
       <td>{{ o.beerBeerName }}</td>
-      <td>{{ o.quantity }}</td>
+      <td>{{ o.quantity }}<div (click)="data.increasenumberinorder(o)">+</div>
+        <div *ngIf="o.quantity > 1" (click)="data.decreasenumberinorder(o)">-</div>
+        <div (click)="data.removefromorder(o)">x</div>
+      </td>
       <td>{{ o.unitPrice | currency: 'GBP' }}</td>
       <td>{{ o.unitPrice * o.quantity | currency: 'GBP' }}</td>
     </tr>
   </tbody>
 </table>
-<button
-  class="btn btn-success float-right"
-  *ngIf="data.order.items.length > 0"
-  (click)="onCheckout()"
->
+<button class="btn btn-success float-right" *ngIf="data.order.items.length > 0" (click)="onCheckout()">
   Checkout
 </button>

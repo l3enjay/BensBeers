@@ -7,7 +7,7 @@
         <td><img src="/img/{{ o.productArtId }}.jpg" alt="o.productTitle" class="img-thumbnail checkout-thumb" /></td>   TODO: ADD ITEMS
       -->
       <td>{{ o.beerBeerName }} - {{ o.beerBrewery.name }}</td>
-      <td>{{ o.quantity }}</td>
+      <td>{{ o.quantity }}  </td>
       <td>{{ o.unitPrice | currency: 'GBP' }}</td>
       <td>{{ o.unitPrice * o.quantity | currency: 'GBP' }}</td>
     </tr>

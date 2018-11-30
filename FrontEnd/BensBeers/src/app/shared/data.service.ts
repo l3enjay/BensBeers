@@ -27,6 +27,30 @@ export class DataService {
   private token = '';
   private tokenExpiration: Date;
 
+  public removefromorder(item: OrderItem) {
+    const index: number = this.order.items.indexOf(item);
+    if (index !== -1) {
+      this.order.items.splice(index, 1);
+      this.orderDisplay.items.splice(index, 1);
+    }
+  }
+
+  public increasenumberinorder(item: OrderItem) {
+    const index: number = this.order.items.indexOf(item);
+    if (index !== -1) {
+      this.order.items[index].quantity = this.order.items[index].quantity + 1;
+      this.orderDisplay.items[index].quantity = this.orderDisplay.items[index].quantity + 1;
+    }
+  }
+
+  public decreasenumberinorder(item: OrderItem) {
+    const index: number = this.order.items.indexOf(item);
+    if (index !== -1) {
+      this.order.items[index].quantity = this.order.items[index].quantity - 1;
+      this.orderDisplay.items[index].quantity = this.orderDisplay.items[index].quantity - 1;
+    }
+  }
+
   public calculatesubtotalinarray(ordercalculate: Order): number {
     return _.sum(_.map(ordercalculate.items, i => i.unitPrice * i.quantity));
   }
@@ -55,6 +79,7 @@ export class DataService {
   }
 
   public addToOrder(newProduct: BaseBeer) {
+    console.log(newProduct.id);
     let item: OrderItem = this.order.items.find(o => o.beerId === newProduct.id);
     if (item) {
       item.quantity++;
