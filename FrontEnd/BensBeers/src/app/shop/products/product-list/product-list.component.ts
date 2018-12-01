@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
         this.products = this.data.products;
       }
     });
+    console.log(this.data.isuseradmin());
   }
 
   addProduct(product: BaseBeer) {

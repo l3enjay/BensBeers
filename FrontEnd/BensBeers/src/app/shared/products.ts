@@ -1,4 +1,4 @@
-export interface Brewery {
+export class Brewery {
   id: number;
   name: string;
   location: string;

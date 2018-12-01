@@ -123,6 +123,7 @@ namespace BensBeers.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _usermanager.FindByNameAsync(model.Username);
+                var userRole = await _usermanager.GetRolesAsync(user);
                 if (user != null)
                 {
                     var result = await _signinmanager.CheckPasswordSignInAsync(user, model.Password, false);
@@ -150,7 +151,8 @@ namespace BensBeers.Controllers
                         var results = new
                         {
                             token = new JwtSecurityTokenHandler().WriteToken(token),
-                            expiration = token.ValidTo
+                            expiration = token.ValidTo,
+                            role = userRole[0]
                         };
 
                         return Created("", results);

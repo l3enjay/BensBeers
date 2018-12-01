@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AccountComponent } from './account/account.component';
 import { OrderDetailsComponent } from './account/order-details/order-details.component';
 import { AddProductsComponent } from './addproducts/addproducts.component';
+import { BrewerieslistComponent } from './brewerieslist/brewerieslist.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AddProductsComponent } from './addproducts/addproducts.component';
     AccountComponent,
     OrderDetailsComponent,
     AddProductsComponent,
+    BrewerieslistComponent,
   ],
   imports: [
     BrowserModule,

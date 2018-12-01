@@ -3,4 +3,6 @@
      <a *ngIf="data.loginRequired" routerLink="register">Register</a><br />
      <a *ngIf="data.loginRequired" routerLink="login">Login</a><br />
      <a (click)="loggedin()" >Account</a> <br /></nav>
+     <a (click)="this.data.logout()" routerLink='shop'>Logout</a><br />
+     <a *ngIf="data.isuseradmin()" routerLink='addbeer'>Add a new Beer</a><br />
 <router-outlet></router-outlet>

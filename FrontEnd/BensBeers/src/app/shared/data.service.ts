@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
-import { Observable, pipe } from 'rxjs';
-import { BaseBeer, Brewery } from './products';
-import { Order, OrderItem } from './order';
-import { Registration } from './registration';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {BaseBeer, Brewery} from './products';
+import {Order, OrderItem} from './order';
+import {Registration} from './registration';
 import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public newordernumber = '';
   public order: Order = new Order();
@@ -27,6 +27,7 @@ export class DataService {
 
   private token = '';
   private tokenExpiration: Date;
+  private role = '';
 
   public removefromorder(item: OrderItem) {
     const index: number = this.order.items.indexOf(item);
@@ -60,11 +61,22 @@ export class DataService {
     return this.token.length === 0 || this.tokenExpiration < new Date();
   }
 
+  isuseradmin(): boolean {
+    return this.role === 'ADMIN';
+  }
+
+  public logout() {
+    this.token = '';
+    this.tokenExpiration = new Date();
+    this.role = '';
+  }
+
   login(creds): Observable<boolean> {
     return this.http.post('http://localhost:8888/api/account/CreateToken', creds).pipe(
       map((data: any) => {
         this.token = data.token;
         this.tokenExpiration = data.tokenExpiration;
+        this.role = data.role;
         return true;
       })
     );
@@ -86,6 +98,29 @@ export class DataService {
         return true;
       })
     );
+  }
+
+  getBreweryByName(name) {
+    return this.breweries.find(o => o.name === name);
+  }
+
+  addproduct(newProduct: BaseBeer) {
+    const findthebrewery: Brewery = this.getBreweryByName(newProduct.brewery);
+    const body = {
+      beerName: newProduct.beerName,
+      style: newProduct.style,
+      abv: newProduct.abv,
+      size: newProduct.size,
+      price: newProduct.price,
+      description: newProduct.description,
+      imageLink: newProduct.imageLink,
+      breweryId: findthebrewery.id,
+      BreweryName: findthebrewery.name,
+      BreweryLocation: findthebrewery.location,
+      BeweryDescription: findthebrewery.description,
+      BreweryImageLink: findthebrewery.imageLink,
+    };
+    return this.http.post('http://localhost:8888/api/Products', body);
   }
 
   public addToOrder(newProduct: BaseBeer) {
@@ -126,8 +161,7 @@ export class DataService {
   public checkout() {
     if (!this.order.orderNumber) {
       this.order.orderNumber =
-        this.order.orderDate.getFullYear().toString() +
-        this.order.orderDate.getTime().toString();
+        this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
     }
     this.newordernumber = this.order.orderNumber;
     return this.http
@@ -135,12 +169,12 @@ export class DataService {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
       })
       .pipe(
-        map(response => {
-          this.order = new Order();
-          this.orderDisplay = new Order();
-          return true;
-        }
-        ));
+        map(() => {
+        this.order = new Order();
+        this.orderDisplay = new Order();
+        return true;
+      })
+      );
   }
 
   public register(newUser: Registration) {
@@ -149,48 +183,63 @@ export class DataService {
       password: newUser.password,
       email: newUser.email,
       lastName: newUser.lastName,
-      username: newUser.email
+      username: newUser.email,
     };
     return this.http.post('http://localhost:8888/api/Account/Register', body);
   }
 
   public showuserOrders(includeItems: boolean): Observable<boolean> {
     if (includeItems) {
-      return this.http.get('http://localhost:8888/api/orders', {
-        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
-      }).pipe(map((data: any[]) => {
-        this.userOrders = data;
-        return true;
-      }));
-
+      return this.http
+        .get('http://localhost:8888/api/orders', {
+          headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
+        })
+        .pipe(
+          map((data: any[]) => {
+            this.userOrders = data;
+            return true;
+          })
+        );
     } else {
-      return this.http.get('http://localhost:8888/api/orders?includeItems=false', {
-        headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
-      }).pipe(map((data: any[]) => {
-        this.userOrders = data;
-        return true;
-      }));
+      return this.http
+        .get('http://localhost:8888/api/orders?includeItems=false', {
+          headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
+        })
+        .pipe(
+          map((data: any[]) => {
+            this.userOrders = data;
+            return true;
+          })
+        );
     }
   }
 
   public specificorderpage(): Observable<boolean> {
     console.log(this.orderSelected + 'ORDER ID GOING TO ORDER PAGE');
-    return this.http.get('http://localhost:8888/api/orders/' + this.orderSelected, {
+    return this.http
+      .get('http://localhost:8888/api/orders/' + this.orderSelected, {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
-      }).pipe(map((data: any) => {
-        this.selectedOrder = data;
-        return true;
-      }));
+      })
+      .pipe(
+        map((data: any) => {
+          this.selectedOrder = data;
+          return true;
+        })
+      );
   }
 
   public getorderbyordernumber(): Observable<boolean> {
     console.log(this.newordernumber);
-    return this.http.get('http://localhost:8888/api/orders/' + this.newordernumber, {
+    return this.http
+      .get('http://localhost:8888/api/orders/' + this.newordernumber, {
         headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token),
-      }).pipe(map((data: any) => {
-        this.newOrder = data;
-        console.log(this.newOrder.orderID);
-        return true;
-      }));
+      })
+      .pipe(
+        map((data: any) => {
+          this.newOrder = data;
+          console.log(this.newOrder.orderID);
+          return true;
+        })
+      );
   }
 }
