@@ -6,7 +6,7 @@ export interface Brewery {
   imageLink: string;
 }
 
-export interface BaseBeer {
+export class BaseBeer {
   id: number;
   beerName: string;
   style: string;

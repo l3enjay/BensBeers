@@ -31,6 +31,19 @@ namespace BensBeers.Data
             AddEntity(newOrder);
         }
 
+        public void AddProduct(Product newProduct)
+        {
+            newProduct.Brewery = _ctx.Breweries.Find(newProduct.Brewery.Id);
+            _ctx.Add(newProduct);
+        }
+
+        public IEnumerable<Brewery> GetAllBreweries()
+        {
+            return _ctx.Breweries
+                .OrderBy(b => b.Name)
+                .ToList();
+        }
+
         public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
             if (includeItems)

@@ -1,4 +1,6 @@
 <h1>{{ title }}</h1>
 <nav><a routerLink="shop">Shop</a> <br />
-<nav><a (click)="loggedin()" >Account</a> <br /></nav>
+     <a *ngIf="data.loginRequired" routerLink="register">Register</a><br />
+     <a *ngIf="data.loginRequired" routerLink="login">Login</a><br />
+     <a (click)="loggedin()" >Account</a> <br /></nav>
 <router-outlet></router-outlet>

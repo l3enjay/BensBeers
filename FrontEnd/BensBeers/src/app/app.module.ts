@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { AccountComponent } from './account/account.component';
 import { OrderDetailsComponent } from './account/order-details/order-details.component';
+import { AddProductsComponent } from './addproducts/addproducts.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OrderDetailsComponent } from './account/order-details/order-details.com
     RegistrationComponent,
     AccountComponent,
     OrderDetailsComponent,
+    AddProductsComponent,
   ],
   imports: [
     BrowserModule,

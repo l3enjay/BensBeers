@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { Observable, pipe } from 'rxjs';
-import { BaseBeer } from './products';
+import { BaseBeer, Brewery } from './products';
 import { Order, OrderItem } from './order';
 import { Registration } from './registration';
 import * as _ from 'lodash';
@@ -23,6 +23,7 @@ export class DataService {
   public newOrder: Order = new Order();
 
   public products: BaseBeer[] = [];
+  public breweries: Brewery[] = [];
 
   private token = '';
   private tokenExpiration: Date;
@@ -64,6 +65,15 @@ export class DataService {
       map((data: any) => {
         this.token = data.token;
         this.tokenExpiration = data.tokenExpiration;
+        return true;
+      })
+    );
+  }
+
+  loadBreweries(): Observable<boolean> {
+    return this.http.get('http://localhost:8888/api/breweries').pipe(
+      map((data: any[]) => {
+        this.breweries = data;
         return true;
       })
     );

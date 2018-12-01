@@ -7,6 +7,8 @@ namespace BensBeers.Data
     {
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetProductsByStyle(string style);
+        void AddProduct(Product newProduct);
+
 
         IEnumerable<Order> GetAllOrders(bool includeItems);
         Order GetOrderById(string username, int id);
@@ -17,6 +19,8 @@ namespace BensBeers.Data
 
         bool SaveAll();
         void AddEntity(object model);
-        
+
+
+        IEnumerable<Brewery> GetAllBreweries();
     }
 }

@@ -23,6 +23,10 @@ namespace BensBeers.ViewModels
                 .ForMember(m => m.Password, opt => opt.Ignore())
                 .ReverseMap();
 
+            CreateMap<Product, ProductViewModel>()
+                .ForMember(p => p.Id, ex => ex.MapFrom(o => o.Id))
+                .ReverseMap();
+
         }
     }
 }
