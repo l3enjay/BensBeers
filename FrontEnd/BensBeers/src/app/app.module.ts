@@ -16,6 +16,8 @@ import { AccountComponent } from './account/account.component';
 import { OrderDetailsComponent } from './account/order-details/order-details.component';
 import { AddProductsComponent } from './addproducts/addproducts.component';
 import { BrewerieslistComponent } from './brewerieslist/brewerieslist.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { BrewerieslistComponent } from './brewerieslist/brewerieslist.component'
     OrderDetailsComponent,
     AddProductsComponent,
     BrewerieslistComponent,
+    NavbarComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,

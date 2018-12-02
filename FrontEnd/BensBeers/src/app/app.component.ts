@@ -10,13 +10,6 @@ import { DataService } from './shared/data.service';
 export class AppComponent {
   title = 'BensBeers';
 
-  constructor(private router: Router, public data: DataService) {}
-  loggedin() {
-    this.data.orderSelected = ' ';
-    if (this.data.loginRequired) {
-      this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['account']);
-    }
-  }
+  constructor() {}
+
 }

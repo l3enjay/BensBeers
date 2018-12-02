@@ -295,7 +295,7 @@ namespace BensBeers.Data.Migrations
             modelBuilder.Entity("BensBeers.Data.Entities.Product", b =>
                 {
                     b.HasOne("BensBeers.Data.Entities.Brewery", "Brewery")
-                        .WithMany("Beers")
+                        .WithMany()
                         .HasForeignKey("BreweryId");
                 });
 

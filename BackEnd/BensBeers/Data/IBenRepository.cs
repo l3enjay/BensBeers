@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BensBeers.Data.Entities;
 
 namespace BensBeers.Data
@@ -22,5 +23,6 @@ namespace BensBeers.Data
 
 
         IEnumerable<Brewery> GetAllBreweries();
+        void DeleteProductById(int id);
     }
 }

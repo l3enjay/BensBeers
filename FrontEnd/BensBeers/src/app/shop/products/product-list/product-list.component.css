@@ -1,0 +1,9 @@
+.img-fluid {
+  max-width: 75%;
+  height: auto;
+}
+
+#buyButton{
+  align-self: center;
+}
+

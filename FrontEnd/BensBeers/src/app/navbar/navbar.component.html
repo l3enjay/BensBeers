@@ -1,0 +1,33 @@
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Ben's Beers</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar = !toggleNavbar"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="nav">
+        <li class="nav-item"><a routerLink="/">Home</a></li>
+        <li class="nav-item"><a routerLink="shop">Shop</a></li>
+        <li  class="nav-item" *ngIf="data.loginRequired"><a  routerLink="register">Register</a></li>
+        <li class="nav-item" *ngIf="data.loginRequired"><a  routerLink="login">Login</a></li>
+        <li class="nav-item"><a (click)="loggedin()" href="javascript:">Account</a></li>
+        <li class="nav-item" *ngIf="!data.loginRequired">
+          <a (click)="data.logout()" routerLink="shop">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="data.isuseradmin()" routerLink="addbeer">Add a new Beer</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- javascript added in to make it appear like a link, actives no javascript
+-->

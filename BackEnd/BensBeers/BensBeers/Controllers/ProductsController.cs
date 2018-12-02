@@ -9,6 +9,7 @@ using BensBeers.Data.Entities;
 using Microsoft.Extensions.Logging;
 using BensBeers.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 //TO DO - VERIFICATION, UPDATE, DELETE
 namespace BensBeers.Controllers
 {
@@ -27,6 +28,28 @@ namespace BensBeers.Controllers
             _logger = logger;
             _mapper = mapper;
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            try 
+            {
+                _repository.DeleteProductById(id);
+                _repository.SaveAll();
+                return Ok("Product Deleted");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete order: {ex}");
+                return BadRequest("Failed to get order");
+            }
+        }
+
 
         [HttpGet]
         [ProducesResponseType(200)]

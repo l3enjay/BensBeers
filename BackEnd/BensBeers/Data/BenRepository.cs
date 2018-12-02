@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace BensBeers.Data
 {
@@ -35,6 +36,12 @@ namespace BensBeers.Data
         {
             newProduct.Brewery = _ctx.Breweries.Find(newProduct.Brewery.Id);
             _ctx.Add(newProduct);
+        }
+
+        public void DeleteProductById(int id)
+        {      
+                var product = _ctx.Products.FirstOrDefault(p => p.Id == id);
+                _ctx.Products.Remove(product);                      
         }
 
         public IEnumerable<Brewery> GetAllBreweries()
